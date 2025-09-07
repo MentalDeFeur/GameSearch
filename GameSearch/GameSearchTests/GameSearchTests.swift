@@ -5,13 +5,21 @@
 //  Created by Joffrey TERRINE on 07/09/2025.
 //
 
-import Testing
+// GameSearchViewModelTests.swift
+import XCTest
 @testable import GameSearch
 
-struct GameSearchTests {
+final class GameSearchViewModelTests: XCTestCase {
 
-    @Test func example() async throws {
-        // Write your test here and use APIs like `#expect(...)` to check expected conditions.
+    func testSearchUpdatesResults() async throws {
+        // Arrange
+        let vm = await GameSearchViewModel()
+        vm.query = "mario"
+        
+        // Act
+        await vm.search(reset: true)
+        
+        // Assert
+        XCTAssertFalse(vm.results.isEmpty, "Le ViewModel doit contenir des résultats")
     }
-
 }
